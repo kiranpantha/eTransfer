@@ -1,8 +1,77 @@
-<?php require('words.php'); ?>
+<?php 
+$email_my=@$_COOKIE['email'];
+$pass1=@$_COOKIE['pass1'];
+$pass2=@$_COOKIE['pass2'];
+require("tpl/class/verifylogin.php");
+$gotoo=new verify();
+$mydata=$gotoo->verified($email_my,$pass1,$pass2);
+if ($mydata!=="NULL")
+{
+header('Location: main.php?info=name');
+die();
+}
+//nepali words
+function tonepali($word_got)
+{
+  $i=NULL;
+  $word=NULL;
+  $lenofword=strlen($word_got);
+  for($i;$i<$lenofword;$i++)
+  {
+   $word_extract=substr($word_got,$i,1);
+   $n_add = NULL;			
+			switch($word_extract){
+				case '1':
+					$n_add = "१";
+					break;
+					
+				case '2':
+					$n_add  = "२";
+					break;
+					
+				case '3':
+					$n_add  = "३";
+					break;
+					
+				case '4':
+					$n_add = "४";
+					break;
+					
+				case '5':
+					$n_add = "५";
+					break;
+				
+				case '6':
+					$n_add = "६";
+					break;
+				
+				case '7':
+					$n_add = "७";
+					break;
+				
+				case '8':
+					$n_add = "८";
+					break;
+				
+				case '9':
+					$n_add = "९";
+					break;
+				
+				case '0':
+					$n_add = "०";
+					break;
+			}	
+		$word.=$n_add;
+  }
+  return $word;
+}
+//nepali
+require('words.php'); 
+?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
-<meta http-equiv="content-type" content="text/html; charset=utf-8" />
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <title>Register - <?php echo $sitetitle; ?></title>
 <?php require($url.'userfiles/favicon.php'); ?>
 <!--css -->
@@ -41,7 +110,8 @@ position: relative;
 text-align: center; 
 text-decoration: none;
 left:0;
-background:#FF3333;
+color:#FFFFFF;
+background:#FF0000;
 -webkit-box-shadow: inset 0px -3px 1px rgba(0, 0, 0, 0.45), 0px 2px 2px rgba(0, 0, 0, 0.25);
 -moz-box-shadow: inset 0px -3px 1px rgba(0, 0, 0, 0.45), 0px 2px 2px rgba(0, 0, 0, 0.25);
 box-shadow: inset 0px -3px 1px rgba(0, 0, 0, 0.45), 0px 2px 2px rgba(0, 0, 0, 0.25);
@@ -63,6 +133,7 @@ text-align: center;
 text-decoration: none;
 left:0;
 background:#00FF00;
+color:#000000;
 -webkit-box-shadow: inset 0px -3px 1px rgba(0, 0, 0, 0.45), 0px 2px 2px rgba(0, 0, 0, 0.25);
 -moz-box-shadow: inset 0px -3px 1px rgba(0, 0, 0, 0.45), 0px 2px 2px rgba(0, 0, 0, 0.25);
 box-shadow: inset 0px -3px 1px rgba(0, 0, 0, 0.45), 0px 2px 2px rgba(0, 0, 0, 0.25);
@@ -126,11 +197,28 @@ background:#FFFFFF;
 -->
 </STYLE>
 <link rel="stylesheet" href="css/btn.css" type="text/css"/>
+<link rel="stylesheet" href="css/login_bth.css" type="text/css"/>
 <!--script -->
 <script language="javascript"  src="js/registrationvalidity.js" > </script> 
 <script language="javascript"  src="tpl/ajax_validity.php" ></script> 
+<SCRIPT type="text/javascript" src="tpl/ajax_login_refer.php"/></SCRIPT>
+<style type="text/css">
+<!--
+body {
+	background-image: url(images/back_img.png);
+}
+-->
+</style>
+<script type="text/javascript">
+<!---
+function reload_security_check()
+{
+document.getElementById("et_security").src = "nospam/?" + Math.floor(Math.random() * 100);}
+-->
+</script>
 </head>
-<body>
+<body>	<?php include('tpl/noscript.php'); ?>
+
 <div id="wrapper">
 	<div id="logo">
 	  <table width="100%" border="0" cellspacing="0" cellpadding="0">
@@ -139,29 +227,11 @@ background:#FFFFFF;
      <?php echo $sitename;?>
      
     </font></td>
-          <td width="20%">A gateway for Nepali transactions</td>
+          <td width="20%"><?php echo $gateway_for_nepali; ?></td>
         </tr>
         <tr>
-          <td><pre class="style2"><?php echo $sitewelcome;?></pre></td>
-          <td><div align="center"><span class="lang">Language:</span>
-            <table width="43%" border="0" cellspacing="0" cellpadding="0">
-              <tr>
-                <td width="21%" height="39"   style="background-color:#CCCCCC;"><a href="lang.php?set=NP&amp;redir=<?php echo base64_encode($_SERVER['REQUEST_URI']); ?>"><img src="images/nplogo_small.png" alt="Nepali" width="37" height="39" /></a></td>
-                <td width="10%"   style="background-color:#CCCCCC;"><a href="lang.php?set=NP&amp;redir=<?php echo base64_encode($_SERVER['REQUEST_URI']); ?>">
-                    <?php if($lang_check=='np') { ?>
-                    <img src="imp_img/check.gif" alt="√" width="15" height="15" />
-                    <?php } ?>
-                  </a></td>
-                <td width="21%">&nbsp;</td>
-                <td width="21%"   style="background-color:#CCCCCC;"><a href="lang.php?set=EN&amp;redir=<?php echo base64_encode($_SERVER['REQUEST_URI']); ?>"><img src="images/uslogo_small.png" alt="Nepali" width="38" height="38" /></a></td>
-                <td width="48%"   style="background-color:#CCCCCC;"><a href="lang.php?set=NP&amp;redir=<?php echo base64_encode($_SERVER['REQUEST_URI']); ?>">
-                    <?php if($lang_check=='en') { ?>
-                    </a><a href="lang.php?set=NP&amp;redir=<?php echo base64_encode($_SERVER['REQUEST_URI']); ?>"><img src="imp_img/check.gif" alt="√" width="15" height="15" />
-                    <?php } ?>
-                  </a></td>
-              </tr>
-                            </table>
-          </div></td>
+          <td style="color:#FFFFFF; font-size:18px"><pre><?php echo $sitewelcome;?></pre></td>
+          <td><div align="center"><span class="lang">Language:</span><?php require('tpl/lang_frame.tpl'); ?></div></td>
         </tr>
       </table>
    
@@ -186,222 +256,169 @@ background:#FFFFFF;
           <div align="center">
   <?php
 require('dbconn.php');
-$capcha1=rand(0,9);
-$capcha2=rand(0,9);
-// word
-if ($capcha1==1)
-{
-$capcha1wrd="one";
-}
-if ($capcha1==2)
-{
-$capcha1wrd="two";
-}
-if ($capcha1==3)
-{
-$capcha1wrd="three";
-}
-if ($capcha1==4)
-{
-$capcha1wrd="four";
-}
-if ($capcha1==5)
-{
-$capcha1wrd="five";
-}
-if ($capcha1==6)
-{
-$capcha1wrd="six";
-}
-if ($capcha1==7)
-{
-$capcha1wrd="seven";
-}
-if ($capcha1==8)
-{
-$capcha1wrd="eight";
-}
-if ($capcha1==9)
-{
-$capcha1wrd="nine";
-}
-if ($capcha1==0)
-{
-$capcha1wrd="zero";
-}
-//end word
-if ($capcha2==1)
-{
-$capcha2wrd="one";
-}
-if ($capcha2==2)
-{
-$capcha2wrd="two";
-}
-if ($capcha2==3)
-{
-$capcha2wrd="three";
-}
-if ($capcha2==4)
-{
-$capcha2wrd="four";
-}
-if ($capcha2==5)
-{
-$capcha2wrd="five";
-}
-if ($capcha2==6)
-{
-$capcha2wrd="six";
-}
-if ($capcha2==7)
-{
-$capcha2wrd="seven";
-}
-if ($capcha2==8)
-{
-$capcha2wrd="eight";
-}
-if ($capcha2==9)
-{
-$capcha2wrd="nine";
-}
-if ($capcha2==0)
-{
-$capcha2wrd="zero";
-}
-
-// end 2
-if ($capcha2%2==0)
-{
-$type="+";
-$typewrd="plus";
-}
-else
-{
-$type="-";
-$typewrd="minus";
-}
-if ($type=="+")
-{
-$ctype=$capcha1+$capcha2;
-}
-elseif ($type=="-")
-{
-$ctype=$capcha1-$capcha2;
-}
-//end captha
 ?>
   <br /><span id="errors"></span>
           </div>
           <form action="redg.php" method="post" name="registerform" onsubmit="return validate(this);" />
   <TABLE width="106%" border="0" cellspacing="0" cellpadding="0">
     <TR>
-      <TD width="9%" class="name"><P class="name">Name</P></TD>
-      <TD width="37%">
-        <INPUT name="name" type="text" class="textboxs" id="name" size="100%" >     </TD>
-      <TD width="54%">You must be a valid citizen of Nepal having sufficient evidence.If we want to verify yourself you must prove that you are citizen of Neal </TD>
+      <TD width="13%" class="name"><P class="name"><?php echo $name_lang; ?></P></TD>
+      <TD width="48%">
+        <INPUT name="name" type="text" class="let_us_epay_register_select_small" id="name" size="50%" >     </TD>
+      <TD width="39%">You must be a valid citizen of Nepal having sufficient evidence.If we want to verify yourself you must prove that you are citizen of Neal </TD>
     </TR>
     <TR>
-      <TD class="name">Organization</TD>
-      <TD><INPUT name="org" type="text" class="textboxs" id="org"  size="60%" ></TD>
+      <TD class="name"><?php echo $org_lang; ?></TD>
+      <TD><INPUT name="org" type="text" class="let_us_epay_register_select_small" id="org"  size="50%" ></TD>
       <TD><span class="style3">Optional Field </span></TD>
     </TR>
     <TR>
-      <TD class="name"><p>Address<br />
-      </p></TD>
-      <TD><INPUT name="add" type="text" class="textboxs" id="add" size="60%"></TD>
+      <TD class="name"><p><?php echo $address_lang; ?><br /></p></TD>
+      <TD><INPUT name="add" type="text" class="let_us_epay_register_select_small" id="add" size="50%"></TD>
       <TD>&nbsp;</TD>
     </TR>
     <TR>
-      <TD class="name">Phone Number </TD>
-      <TD><input name="phn" type="text" class="textboxs" id="phn" size="60%" onchange="return isNumeric(this);"></TD>
-      <TD>&nbsp;</TD>
+      <TD class="name"><?php echo $phone_lang; ?></TD>
+      <TD><input name="phn" type="text" class="let_us_epay_register_select_small" id="phn" size="50%" onchange="phoneValidator(this);"></TD>
+      <TD><span class="name">97XXXXXXXX</span> <span class="Msg">OR</span> <span class="name">98XXXXXXXX </span></TD>
     </TR>
     <TR>
-      <TD class="name"><p>E-mail<br />
-      </p>        </TD>
-      <TD><input name="email" type="text" class="textboxs" id="email" size="60%" onchange="javascript: getemailinfo(this);"></TD>
+      <TD class="name"><p><?php echo $email_lang; ?><br /></p></TD>
+      <TD><input name="email" type="text" class="let_us_epay_register_select_small" id="email" size="50%" onchange="javascript: getemailinfo(this);"></TD>
       <TD>You will get every transciction record in your E-mail </TD>
     </TR>
     <TR>
-      <TD class="name"><p>Birthday
-              <br />
-          </p>        </TD>
+      <TD class="name"><p><?php echo $birth_lang; ?></p></TD>
       <TD><span class="size3">
-        <select name="listday" class="textboxs_new" id="tday">
-          <option>Day</option>
-          <script type="text/javascript">
-							for(i=1;i<=31;i++)
-								document.write("<option>"+i+"</option>");
-						</script>
+        <select name="listday" class="let_us_epay_register_select_small" id="tday">
+        <?php
+		if($lang_check=='en')
+		{
+		 $i=1;
+		 $list_data='<option>Day</option>';
+		 for($i;$i<=31;$i++)
+		 {
+		 $list_data.="<option>".$i."</option>";
+		 }
+		 echo $list_data;	
+		}
+		else
+		{
+		 $i=1;
+		 $list_data='<option>दिन</option>';
+		 for($i;$i<=31;$i++)
+		 {
+		 $list_data.="<option value=\"$i\">".tonepali($i)."</option>";
+		 }
+		 echo $list_data;	
+		}	
+		?> 
         </select>
-        <select name="listmonth" class="textboxs_new" id="tmonth" style="font-size:8pt;">
-        <option>Month</option>
-          <option>Jan</option>
-          <option>Fab</option>
-          <option>Mar</option>
-          <option>Apr</option>
-          <option>May</option>
-          <option>Jun</option>
-          <option>Jul</option>
-          <option>Aug</option>
-          <option>Sep</option>
-          <option>Oct</option>
-          <option>Nov</option>
-          <option>Dec</option>
+        <select name="listmonth" class="let_us_epay_register_select_small" id="tmonth">
+		<?php
+		$listmonth_data=NULL;
+		$month_en=array('Month','Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec');
+		$month_np=array('महिना','जनवरी','फेबवरी','मार्च','अप्रिल','मे','जुन','जुलाइ','अगस्त','सेक्टेम्बर','अक्टुबर','नोमेम्बर','डिसेम्बर');
+		if($lang_check=='en')
+		{
+		 $i=0;
+		 for($i;$i<=12;$i++)
+		 {
+		 $listmonth_data.="<option>".$month_en[$i]."</option>\n";
+		 }
+		 echo $listmonth_data;	
+		}
+		else
+		{
+		 $i=0;
+		 for($i;$i<=12;$i++)
+		 {
+		 $listmonth_data.="<option value=\"".$month_en[$i]."\">".$month_np[$i]."</option>";
+		 }	
+		 echo $listmonth_data;	
+		}	
+		?>
         </select>
-        <select name="listyear" class="textboxs_new" id="tyear" style="font-size:8pt;" >
-          <option> Year (Birth) </option>
-          <script type="text/javascript">
-							for(i=<?php echo date("Y") ?>-16;i>=1920;i--)
-								document.write("<option>"+i+"</option>");
-						</script>
+        <select name="listyear" class="let_us_epay_register_select_small" id="tyear">
+         <?php
+		if($lang_check=='en')
+		{
+		 $i=date('Y')-16;
+		 $list_data='<option>Year</option>';
+		 for($i;$i>=1920;$i--)
+		 {
+		 $list_data.="<option>".$i."</option>\n";
+		 }
+		 echo $list_data;	
+		}
+		else
+		{
+		 $i=date('Y')-16;
+		 $list_data="<option>बर्ष</option>\n";
+		 for($i;$i>=1920;$i--)
+		 {
+		 $list_data.="<option value=\"$i\">".tonepali($i)."</option>\n";
+		 }
+		 echo $list_data;		
+		 }	
+		?> 
         </select>
       </span></TD>
       <TD>&nbsp;</TD>
     </TR>
     <TR>
-      <TD class="name"><p>Gender
-              <br />
-          </p>        </TD>
-      <TD><label>
-        <select name="select_gender" class="textboxs">
+      <TD class="name"><p><?php echo $gender_lang; ?></p>        </TD>
+      <TD><label><?php
+        if($lang_check=='en')
+		{
+		 echo '
+		 <select name="select_gender" class="let_us_epay_register_small" >
           <option>Select</option>
           <option value="m">Male</option>
           <option value="f">Female</option>
-        </select>
+        </select>';
+		}
+		else
+		{
+		 echo '
+		 <select name="select_gender" class="let_us_epay_register_small" >
+          <option>चुन्नुहोस्</option>
+          <option value="m">पुरूष</option>
+          <option value="f">महिला</option>
+        </select>';
+		}
+		?>
       </label></TD>
       <TD>&nbsp;</TD>
     </TR>
     <TR>
-      <TD class="name"><p>Password 1<br />
+      <TD class="name"><p><?php echo $password1_lang; ?><br />
       </p></TD>
-      <TD><INPUT name="password1" type="text" class="textboxs" id="password1" size="60%" ></TD>
-      <TD>We have the word's unique double password and double domain authorization </TD>
+      <TD><INPUT name="password1" type="password" class="let_us_epay_register_select_small" id="password1" size="50%" ></TD>
+      <TD>Two Password security for extended security </TD>
     </TR>
     <TR>
-      <TD class="name"><p>Password 2 <br />
+      <TD class="name"><p><?php echo $password1_lang; ?><br />
       </p>        </TD>
-      <TD><INPUT name="password2" type="text" class="textboxs" id="password2" size="60%"></TD>
-      <TD>System Designed by our Excellent Programmers</TD>
+      <TD><INPUT name="password2" type="password" class="let_us_epay_register_select_small" id="password2" size="50%"></TD>
+      <TD>&nbsp;</TD>
     </TR>
     <TR>
       <TD class="name">&nbsp;</TD>
-      <TD><SPAN class="style2"><span class="name">Captcha</span><br />
-                  <img src="userfiles/capctha.php?word=<?php echo base64_encode($capcha1wrd."+".$typewrd."+".$capcha2wrd); ?>" />
-            <INPUT name="captcha1" type="hidden" id="captcha1" value="<?php echo md5($ctype) ;   ?>">
+      <TD><SPAN class="style2"><?php echo $capctha_lang; ?><br /><div  class="let_us_epay_register_small">
+                  <img src="nospam/?rand=<?php echo rand(1,10000); ?>" alt="No! Spam" name="et_security" width="100%" height="30" id="et_security" onclick="reload_security_check();" title="Click to reload"/><br />
+      Problem Loading! Click on Image to reload </div>
         </SPAN><BR>
-        <INPUT name="captcha2" type="text" class="textboxs" id="captcha2" size="60%"></TD>
-      <TD><span class="style4">THREE-TWO =&gt;<span class="style3">1</span> NOT ONE </span></TD>
+        <INPUT name="captcha" type="text" class="let_us_epay_register_select_small" id="captcha" size="50%" autocomplete="no"></TD>
+      <TD>&nbsp;</TD>
     </TR>
     <TR>
       <TD>&nbsp;</TD>
       <TD><label>
         <br />
-        <input type="submit" name="submit_redg_data" value="Get registered" class="button" onclick="return validate(registerform);" />
+        <input type="submit" name="submit_redg_data" value="<?php echo $register_bth_lang;  ?>" class="button" onclick="return validate(registerform);" />
       </label></TD>
-      <TD><input type="reset" name="Submit2" value="Reset" class="button" /></TD>
+      <TD><input type="reset" name="Submit2" value="<?php echo $clear_lang; ?>" class="button" /></TD>
     </TR>
   </TABLE>
   </form>

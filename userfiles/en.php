@@ -29,6 +29,30 @@ $failed_transfer='Sorry to say but <br />This e-mail is not registered with us<b
 $confirmcode="Confirm Code";
 $confirmsubmit="Confirm $email_lang";
 $info_top_confirm='Please confirm the account with the verification code that was mailed to you ';
+$gateway_for_nepali='A gateway for Nepali transactions';
+$password_lang='Password';
+$password1_lang="Passkey 1";
+$password2_lang="Passkey 2";
+$login_lang="Log in";
+$forgot_lang_desc="Forgetting password is common in our system";
+$forgot_lang="Forgot Password";
+$cook= "<font color=\"red\">* Cookies must be enabled</font>";
+$start_for_pass='Type the email to recover password';
+$procced_lang='Recover Password';
+$accept_lang='We accept bank transfer and after confirmation of your recharge request we will recharge your Account and we will withdraw within 24 hours to your bank account on the case of withdrawl request.<br />You can also get a recharge coupon from any Merchants of our Pay site.';
+$language_lang='Language';
+//register.php
+$name_lang="Name";
+$org_lang="Organization";
+$address_lang="Address";
+$phone_lang="Phone";
+$birth_lang="Birthday";
+$gender_lang="Gender";
+$capctha_lang="Security Check";
+$register_bth_lang="Register";
+$clear_lang="Clear Form";
+$loading_lang='Please Wait...';
+$statement_long_lang='Detail Invoice';
 //end words
 $sitewelcome="Welcome to the totally secure website for e-payments";
 $sitebase="Copyright  ".$_SERVER['SERVER_NAME']." 2012-".date("Y");

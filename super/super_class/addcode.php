@@ -24,6 +24,7 @@ class addcode
     <td width="40%"  background="images/noisestrip.png"><span class="title">Information of Product </span></td>
     <td width="25%"  background="images/noisestrip.png"><span class="title">From</span></td>
     <td width="15%"  background="images/noisestrip.png"><span class="title">Price Value</span></td>
+    <td width="15%"  background="images/noisestrip.png"><span class="title">Action</span></td>
   </tr>';
      while($rows=mysql_fetch_array($result))
 	 {
@@ -32,6 +33,7 @@ $middle.='<tr>
     <td background="images/noisestrip_trans.png"><span class="cont">'.$rows['info'].'</span></td>
     <td background="images/noisestrip_trans.png"><span class="cont">'.$rows['from'].'</span></td>
     <td background="images/noisestrip_trans.png"><span class="cont">NRS '.$rows['pricevalue'].'</span></td>
+    <td background="images/noisestrip_trans.png"><span class="cont">X</span></td>
   </tr>';
 	 }
 	$last="</table>";

@@ -1,4 +1,5 @@
 <?php
+header('Content-Type: text/xml');
 if ($_GET)
 {
   $add_data=$verified=NULL;

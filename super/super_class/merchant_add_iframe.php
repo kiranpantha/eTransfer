@@ -19,6 +19,7 @@ if($count==1)
 {
 $rows=mysql_fetch_array($result);
 $id=$rows['id'];
+$userid=$rows['userid'];
 $name=$rows['name'];
 $company=$rows['company'];
 $s_c=$rows['s_c'];
@@ -32,7 +33,7 @@ $ifno=$rows['ifno'];
   {
   require('merchant_add.php');
   $result_added=new super_merchant();
-  $result_add=$result_added->information($id,$name,$company,$url,$s_c,$price,$ifyes,$ifno);
+  $result_add=$result_added->information($userid,$name,$company,$url,$s_c,$price,$ifyes,$ifno);
    if($result_add=='yes')
    {
    require('merchant_del.php');

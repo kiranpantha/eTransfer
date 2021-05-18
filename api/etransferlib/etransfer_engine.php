@@ -14,21 +14,33 @@
   ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 if ($_GET)                                                                                                               
-{        
+{      
+$e_t_result=NULL;  
+require('etransferlib/etransfercss.php');
 require('etransferlib/etransfermainclass.php');
-$accesscode=@$_GET['accesscode']; $x1=@$_GET['x1']; $x2=@$_GET['x2']; $x3=@$_GET['x3']; $x4=@$_GET['x4']; $invoiceid=@$_GET['invoiceid'];     
-   if (!empty($x1) && !empty($x2) && !empty($x3) && !empty($x4)  && !empty($accesscode) && !empty($invoiceid))
+$got_hash_data=@$_GET['hash'];
+$f_=@file('http://localhost/e/temp_data_merchant_listit/'.$got_hash_data);
+$invoiceid=substr($f_[0],0,strlen($f_[0])-1);
+$accesscode=substr($f_[1],0,32);
+$unicheck1=substr($f_[2],0,32);
+$unicheck_md5=substr($f_[3],0,32);
+$unicheck_sha=$f_[4];
+   if (!empty($invoiceid) && !empty($accesscode) && !empty($unicheck1) && !empty($unicheck_md5)  && !empty($unicheck_sha))
    {                                     
    $etransfer_main_validity_obj=new etransfer_data_main();
-   $etransfer_main_validity=$etransfer_main_validity_obj->etransfer_data_get_result($accesscode,$specialcode,$merchantid,$x1,$x2,$x3,$x4,$invoiceid);
+   $etransfer_main_validity=$etransfer_main_validity_obj->etransfer_data_get_result($accesscode,$specialcode,$merchantid,$unicheck1,$unicheck_md5,$unicheck_sha,$invoiceid,$got_hash_data);
    if($etransfer_main_validity=='TRANSFEROK')
    { 
       $e_t_result='ITSOK';
    }
+   else
+   {
+      $e_t_result = $etransfer_main_validity;
+   }
    }
    else
    {
-	  echo '<div class="warning">Error 0XASD002<BR>System Error</div>';
+      $e_t_result = 'Invalid or Already Purchased';
    }
 }
 ?>

@@ -1,7 +1,7 @@
 <?php
 class etransferlib_complete
 {
-  function etransfer_verify($merid,$specialcode,$invoiceid)
+  function etransfer_verify($merid,$specialcode,$invoiceid,$got_hash_data)
   {
   ////////////////////////////////////////////////////////////////////////////////////////////////////////////////
   ///DDDDD///////OO0O////////NN///////NN///OOOOO////TTTTTTTTTTT///////EEEEEEEEEE//DDDDD////IIIIIII//TTTTTTTTTTTT//
@@ -17,7 +17,7 @@ class etransferlib_complete
   //-------------------------------------(c) 2013 E-transfer Nepal----------------------------------------------//
   ////////////////////////////////////////////////////////////////////////////////////////////////////////////////
   $url=NULL;
-  $url="http://127.0.0.1/e/api/finalprocess.php?merid=".$merid."&s_c=".$specialcode."&invoiceid=".$invoiceid;
+  $url="http://127.0.0.1/e/api/finalprocess.php?merid=".$merid."&s_c=".$specialcode."&invoiceid=".$invoiceid."&hash=".$got_hash_data;
   return file_get_contents($url);
   }
 }

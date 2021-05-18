@@ -160,7 +160,7 @@ img,a {
 
 .header_con .header_in .box .login p.title span {
 	font-family: 'Wellfleet', cursive;
-	color: #fff;
+color: #ffffff;
 	font-size: 12px;
 	margin-left: 110px;
 	padding: 8px 0 0 0;
@@ -688,7 +688,7 @@ a.nivo-prevNav {
 	padding: 0 5px 0 0;
 }
 
-.signUp {
+.let_us_epay_register {
 	-moz-box-shadow: inset 0px 1px 0px 0px #ddedbd;
 	-webkit-box-shadow: inset 0px 1px 0px 0px #ddedbd;
 	box-shadow: inset 0px 1px 0px 0px #ddedbd;
@@ -705,16 +705,17 @@ a.nivo-prevNav {
 	display: inline-block;
 	color: #ffffff;
 	font-family: 'Abel', sans-serif;
-	font-size: 28px;
+	font-size: 14px;
+	width:150px;
 	font-weight: normal;
 	padding: 10px 10px;
-	width: 150px;
 	text-decoration: none;
 	text-shadow: 1px 1px 0px #2c3d0d;
 	margin: 15px 20px 0 0;
 }
+.myButton:hover , 
 
-.signUp:hover,.myButton:hover {
+.let_us_epay_register:hover{
 	background: -webkit-gradient(linear, left top, left bottom, color-stop(0.05, #425c11
 		), color-stop(1, #8eb73c) );
 	background: -moz-linear-gradient(center top, #425c11 5%, #8eb73c 100%);
@@ -723,7 +724,7 @@ a.nivo-prevNav {
 	background-color: #425c11;
 }
 
-.signUp:active {
+.let_us_epay_register:active {
 	position: relative;
 	top: 1px;
 }
@@ -1191,7 +1192,7 @@ a.nivo-prevNav {
 	border: 1px solid #FFAD33;
 }
 
-.esewaMessageInfo {
+.msg_box_mefium {
 	background-color: #FBB757;
 	border: 1px solid #B75F00;
 	border-radius: 5px 5px 5px 5px;
@@ -1200,7 +1201,7 @@ a.nivo-prevNav {
 	width: 850px;
 }
 
-.esewaMessageInfo h3 {
+.msg_box_mefium h3 {
 	text-align: center;
 	text-shadow: 0px 1px 0px #d1d1d1;
 	font-size: 12px;
@@ -1208,7 +1209,7 @@ a.nivo-prevNav {
 	padding: 20px 0px;
 }
 
-.esewaMessageError {
+.alli_thulo_err_box {
 	background-color: #FBB757;
 	border: 1px solid #B75F00;
 	border-radius: 5px 5px 5px 5px;
@@ -1217,7 +1218,7 @@ a.nivo-prevNav {
 	width: 850px;
 }
 
-.esewaMessageError h3 {
+.alli_thulo_err_box h3 {
 	text-align: center;
 	text-shadow: 0px 1px 0px #d1d1d1;
 	font-size: 14px;
@@ -1331,7 +1332,7 @@ a.nivo-prevNav {
 	padding: 40px 0 0 0;
 	height: 45px;
 	font-family: 'Open Sans', Arial, sans-serif;
-	text-shadow: 0 0 1px #fff, 0 1px 2px rgba(0, 0, 0, 0.3);
+	text-shadow: 0 0 1px #ffffff, 0 1px 2px rgba(0, 0, 0, 0.3);
 }
 
 .ch-info p {
@@ -1790,7 +1791,7 @@ img.displayed {
 	-moz-border-radius: 5px 5px 0px 0px;
 	-o-border-radius: 5px 5px 0px 0px;
 	background: url(../images/epay/paneltitle_bg.png) top left repeat-x;
-	color: #fff;
+	color: #ffffff;
 	font-size: 14px;
 }
 
@@ -1849,7 +1850,7 @@ img.displayed {
 
 .epay_login p.title span {
 	font-family: 'Wellfleet', cursive;
-	color: #fff;
+	color: #ffffff;
 	font-size: 12px;
 	margin-left: 110px;
 	padding: 8px 0 0 0;

@@ -1,4 +1,20 @@
-<?php require('words.php');
+<?php 
+$itsok=$msg_show=NULL;
+$loggedin_data='false';
+$loggedin=false;
+require('words.php');
+$myusername=@$_COOKIE['email']; 
+$mypassword1=@$_COOKIE['pass1'];
+$mypassword2=@$_COOKIE['pass2']; 			//end check
+//check
+require('tpl/class/verifylogin.php');
+$login_obj=new verify();
+$loggedin=$login_obj->verified($myusername,$mypassword1,$mypassword2);
+if ($loggedin!=='NULL')
+{
+header("Location: main.php?info=desc");
+die();
+}
 if ($_GET)
 {
 $email=@$_GET['Email'];
@@ -24,63 +40,56 @@ $address=$rows['address'];
 $tbl_name2="members";
 $sqlz="INSERT INTO $tbl_name2(name,email,organization,password1,password2,address,phone,birthday,gender) VALUES( '$name', '$email', '$organization', '$password1', '$password2','$address', '$phone', '$birthday', '$gender')";
 $result2=mysql_query($sqlz);
-if ($result2){ echo "[["; }
+if ($result2){ $itsok='OK'; }
 //get user id
-require('tpl/class/verifylogin.php');
 $my_data_class=new verify();
 $id_np=$my_data_class->verified($email,$password1,$password2);
 //
 $tbl_name3='balance';
 $sql_balance="INSERT INTO $tbl_name3(id,ab,rb) VALUES( '$id_np', '0', '0')";
 $result2=mysql_query($sql_balance);
-if ($result2){ echo "]]"; }
-}
-else {
-  echo '
-<link rel="stylesheet" href="userfiles/cssforreg.css"/><title>Confirm failed</title><div class="warning"> Error in Username and Confirmation code combination .Please try to enter again.<br>OR<br> You might have refreshed the browser after confirmation<br />Go Back!</div>';	
-die();
-   }
-if($result2){
-	      $sername=$_SERVER['SERVER_NAME'];
+if ($result2 || $itsok!==NULL){	      $sername=$_SERVER['SERVER_NAME'];
 	      require('tpl/class/sendmail.php');
 		  $sendmail=new wemail();
 		  $sendmail->send($email,'confirm',"NULL","NULL");
-           echo '<link rel="stylesheet" href="userfiles/cssforreg.css"/><title>Confirm Success</title></head><body bgcolor="#BDBDBD"><center><div class="atten"><font color="green">You have successfully completed registration process of '.$_SERVER['SERVER_NAME'].'<br/>You can now do varieties of activities in this site using the code <br>e-transfer</font><br /><a href="index.php">Goto Home!</a></div></center></body></html>';
+         $msg_show='<title>Confirm Success</title></head><body bgcolor="#BDBDBD"><center><div class="atten">You have successfully completed registration process of '.$_SERVER['SERVER_NAME'].'<br/>You can now do varieties of activities in this site using the code <br>e-transfer<br /><a href="index.php">Goto Home!</a></div></center></body></html>';
 $sql3="DELETE FROM $tbl_name1 WHERE confirm_code = '$passkey' and name='$name'";
 $result3=mysql_query($sql3);
 //enter value
 // new value
-die();
+ }
 }
+else {
+ $msg_show='
+<title>Confirm failed</title><div class="warning"> Error in Username and Confirmation code combination .Please try to enter again.<br>OR<br> You might have refreshed the browser after confirmation</div>';	
+   }
 }
 }
 ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
-<meta http-equiv="content-type" content="text/html; charset=utf-8" />
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <title>Confirm - <?php echo $sitetitle; ?></title>
 <?php include("userfiles/favicon.php"); ?>
+<LINK rel="stylesheet" href="store/mainstyler.css" type="text/css">
 <meta name="description" content="Confirm your Email at e-transfer&trade;" />
 <link href="style.css" rel="stylesheet" type="text/css" media="screen" />
-
+<link rel="stylesheet" href="userfiles/cssforreg.css" type="text/css"/>
+<SCRIPT type="text/javascript" src="tpl/ajax_login_refer.php"/></SCRIPT>
 <style type="text/css">
 <!--
 .style2 {font-size: 18px}
 -->
 </style>
 <LINK rel="stylesheet" href="userfiles/trybth.php" />
+<LINK rel="stylesheet" href="css/login_bth.css" type="text/css">
 <style type="text/css">
 <!--
 .Msg {
 	color: #FF0000;
 	font-size: 16px;
 }
--->
-</style>
-<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
-<style type="text/css">
-<!--
 .blue{
 border-right:2px solid #6600CC;
 border-left:2px solid #6600CC; 
@@ -101,6 +110,12 @@ background:#FFFFFF;
 }
 .lang {	color: #FFFFFF;
 	font-weight: bold;
+}
+body {
+	background-image: url(images/back_img.png);
+}
+body,td,th {
+	color: #FFFFFF;
 }
 -->
 </style>
@@ -133,35 +148,18 @@ function MM_validateForm() { //v4.0
 </script>
 </head>
 <body>
+	<?php include('tpl/noscript.php'); ?>
 <div id="wrapper">
 	<div id="logo">
 	  <table width="100%" border="0" cellspacing="0" cellpadding="0">
         <tr>
           <td width="80%"> <font face="Georgia, Times New Roman, Times, serif"> 
      <?php echo $sitename;?></font></td>
-          <td width="20%">A gateway for Nepali transactions</td>
+          <td width="20%"><?php echo $gateway_for_nepali; ?></td>
         </tr>
         <tr>
           <td><pre class="style2"><?php echo $sitewelcome;?></pre></td>
-          <td><div align="center"><span class="lang">Language:</span>
-            <table width="43%" border="0" cellspacing="0" cellpadding="0">
-              <tr>
-                <td width="21%" height="39"   style="background-color:#CCCCCC;"><a href="lang.php?set=NP&amp;redir=<?php echo base64_encode($_SERVER['REQUEST_URI']); ?>"><img src="images/nplogo_small.png" alt="Nepali" width="37" height="39" /></a></td>
-                <td width="10%"   style="background-color:#CCCCCC;"><a href="lang.php?set=NP&amp;redir=<?php echo base64_encode($_SERVER['REQUEST_URI']); ?>">
-                    <?php if($lang_check=='np') { ?>
-                    <img src="imp_img/check.gif" alt="√" width="15" height="15" />
-                    <?php } ?>
-                  </a></td>
-                <td width="21%">&nbsp;</td>
-                <td width="21%"   style="background-color:#CCCCCC;"><a href="lang.php?set=EN&amp;redir=<?php echo base64_encode($_SERVER['REQUEST_URI']); ?>"><img src="images/uslogo_small.png" alt="Nepali" width="38" height="38" /></a></td>
-                <td width="48%"   style="background-color:#CCCCCC;"><a href="lang.php?set=NP&amp;redir=<?php echo base64_encode($_SERVER['REQUEST_URI']); ?>">
-                    <?php if($lang_check=='en') { ?>
-                    </a><a href="lang.php?set=NP&amp;redir=<?php echo base64_encode($_SERVER['REQUEST_URI']); ?>"><img src="imp_img/check.gif" alt="√" width="15" height="15" />
-                    <?php } ?>
-                  </a></td>
-              </tr>
-                            </table>
-          </div></td>
+          <td><div align="center"><span class="lang">Language:</span><?php require('tpl/lang_frame.tpl'); ?></div></td>
         </tr>
       </table>
    
@@ -185,22 +183,22 @@ function MM_validateForm() { //v4.0
             <p> <span class="Msg">Each transaction is viewed and order is placed by human so it is 100% secure </span></p>
 			</div><br />
 			<hr />
-			<br />
+		<div><?php echo $msg_show; ?></div>
 			<span class="top_text"><?php echo $info_top_confirm; ?></span><br />
 			<table width="100%" border="0">
   <form action="confirm.php" method="get" onsubmit="MM_validateForm('Email','','RisEmail','ConfirmCode','','R');return document.MM_returnValue">
   <tr>
-    <td width="6%">&nbsp;</td>
-    <td width="23%"><span class="label_text"><?php echo $email_lang; ?>:</span></td>
-    <td width="38%"><input name="Email" type="text" class="tryit_tbl" id="Email" size="35" onkeyup="return CheckInput(this);"/></td>
-    <td width="33%">&nbsp;</td>
+    <td width="2%">&nbsp;</td>
+    <td width="25%"><span class="label_text"><?php echo $email_lang; ?>:</span></td>
+    <td width="42%"><input name="Email" type="text" class="let_us_epay_register_small"   id="Email" size="35" onkeyup="return CheckInput(this);"/></td>
+    <td width="31%">&nbsp;</td>
   </tr>
   <tr>
     <td></td>
-    <td><span class="label_text"><?php echo $confirmcode; ?> : </span></td>
-    <td><input name="ConfirmCode" type="text" class="tryit_tbl" id="ConfirmCode" size="35" onkeyup="return CheckInput(this);"/></td>
+    <td><span class="label_text"><?php echo $confirmcode; ?>: </span></td>
+    <td><input name="ConfirmCode" type="text" class="let_us_epay_register_small"  id="ConfirmCode" size="35" onkeyup="return CheckInput(this);"/></td>
     <td><label>
-      <input name="Proceed" type="submit" class="tryit" id="Proceed" value="<?php echo $confirmsubmit; ?>" />
+      <input name="Proceed" type="submit"  class="let_us_epay_register"   id="Proceed" value="<?php echo $confirmsubmit; ?>" />
     </label></td>
   </form>
   <tr>
@@ -217,8 +215,9 @@ function MM_validateForm() { //v4.0
 			<div class="post"><div class="entry">
 			  <table width="100%" border="0" cellpadding="0" cellspacing="0">
                       <tr>
-                        <td width="81%">We accept bank transfer and after confirmation of your recharge request we will recharge your Account and we will withdraw within 24 hours to your bank account on the case of withdrawl request.<br />
-You can also get a recharge coupon from any Merchants of our Pay site. <br /></td>
+                        <td width="81%">
+						<?php echo $accept_lang; ?>
+						</td>
                         <td width="19%"><img src="<?php echo $urlveri; ?>" alt="Verified and 100% secure" width="126" height="62" /></td>
                       </tr>
               </table>

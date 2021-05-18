@@ -1,17 +1,4 @@
 <link rel="stylesheet" href="photo/modal000.css" type="text/css" />
-<script type="text/javascript" src="photo/mootools.js"></script>
-<script type="text/javascript" src="photo/modal000.js"></script>
-<script type="text/javascript">
-		window.addEvent('domready', function() {
-			SqueezeBox.initialize({});
-			$$('a.modal-button').each(function(el) {
-				el.addEvent('click', function(e) {
-					new Event(e).stop();
-					SqueezeBox.fromElement(el);
-				});
-			});
-		});
-  </script>
 <style type="text/css">
 <!--
 .close{
@@ -43,3 +30,16 @@ this.onmouseout=new Function("this.className=this.className.replace(' hover','')
  #sbox-window {background-color:#000000;padding:10px} 
  #sbox-overlay {background-color:#000000;} 
  </style>
+<script type="text/javascript" src="photo/mootools.js"></script>
+<script type="text/javascript" src="photo/modal000.js"></script>
+<script type="text/javascript">
+		window.addEvent('domready', function() {
+			SqueezeBox.initialize({});
+			$$('a.modal-button').each(function(el) {
+				el.addEvent('click', function(e) {
+					new Event(e).stop();
+					SqueezeBox.fromElement(el);
+				});
+			});
+		});
+  </script>

@@ -4,7 +4,7 @@ function tonepali($word_got)
   $i=NULL;
   $word=NULL;
   $lenofword=strlen($word_got);
-  for($i;$i<=$lenofword;$i++)
+  for($i;$i<$lenofword;$i++)
   {
    $word_extract=substr($word_got,$i,1);
    $n_add = NULL;			

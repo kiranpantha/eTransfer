@@ -2,17 +2,17 @@
 require('dbconn.php');
 $buy='';
 //pay
-function payed($userid,$type,$from,$pricevalue,$code_too)
+function payedadd($me,$you,$type,$p_to,$pricevalue,$code)
 {
 require('class/invoiceadd.php');
 $add_new=new invoiceadd();
-$add_new->add($userid,$type,$from,$pricevalue,$code_too);
+$add_new->add($me,$you,$type,$p_to,$pricevalue,$code);
 }
 //kiran
 function getbalance($idname)
 {
 $tbl_nam="balance";
-$sql="SELECT * FROM $tbl_nam WHERE id='$idname'";
+$sql="SELECT * FROM $tbl_nam WHERE `id`='$idname'";
 $result=mysql_query($sql);
 if ($result)
 {
@@ -27,7 +27,7 @@ return $ab;
 function get_code($idinfo)
 {
 $tbl_name1="product_code";
-$sql1="SELECT * FROM $tbl_name1 WHERE id='$idinfo'";
+$sql1="SELECT * FROM $tbl_name1 WHERE `id`='$idinfo'";
 $result1=mysql_query($sql1);
 if ($result1)
 {
@@ -41,11 +41,11 @@ return $code_value;
 function del_that_code($idnam,$code_pro)
 {
 $tbl_n='product_code';
-$sql3="DELETE FROM $tbl_n WHERE id = '$idnam' and code='$code_pro'";
+$sql3="DELETE FROM $tbl_n WHERE `id` = '$idnam' and `code`='$code_pro'";
 $result3=mysql_query($sql3);
 if ($result3)
 {
-echo '<br>---Code Executed---';
+echo "-_-_-_-_-";
 }
 }
 //end del that name
@@ -144,7 +144,8 @@ $info=$rows['info'];
 $from=$rows['from'];
 $id_price=$id=$rows['id'];
 $price=$rows['pricevalue'];
-$title.='<tr width="250"><td><img src="store/'.$id.'.png" title="'.$info.'"></td><td><span class="topic">'.$info.'</span><br />
+$imgsrc=$rows['imgsrc'];
+$title.='<tr width="250"><td><img src="../images/upload/'.$imgsrc.'" title="'.$info.'"></td><td><span class="topic">'.$info.'</span><br />
   <span class="frm">From </span><span class="comp">'.$from.'</span><br />
     <span class="frm">Price</span> <span class="price"> Rs '.$price.'</span> <br /><a href="buy.php?info='.$id.'&buy=true&accessid='.md5($id).'"><img src="../imp_img/buy.png" alt="Confirm Buy" Title="Confirm Buy"/></a></td></tr>';
 //Buy
@@ -169,7 +170,7 @@ if ($resultv)
 {
 echo "<div class=\"atten\">The code is <BR> <STRONG>$code_to</STRONG><BR> It's copy is sent to you via E-mail and SMS</DIV>";
 $from='My Balance';
-payed($idname,$info,$from,$price,$code_to);
+payedadd($idname,'0','2',$id_price,$price,$code_to);
 del_that_code($id_price,$code_to);
 //sending mail and sms
 

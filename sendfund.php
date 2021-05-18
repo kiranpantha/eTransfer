@@ -62,7 +62,7 @@ if ($gotooo!=="NULL")
 		  { 
 		  require('tpl/class/invoiceadd.php');
           $add_new=new invoiceadd();
-          $add_new->add($returned,"Transfer",$email_my,$money,"NULL");
+          $add_new->add($gotooo,$returned,'0','0',$money,'NULL');
 		 //start msg
           $subject=$_SERVER['SERVER_NAME']." Notification";
 	      $sername=$_SERVER['SERVER_NAME'];
@@ -111,6 +111,7 @@ echo '<LINK rel="stylesheet" href="userfiles/cssforreg.css"/><div class="warning
 <?php include("userfiles/favicon.php"); ?>
 <LINK href="style.css" rel="stylesheet" type="text/css" media="screen" />
 <LINK rel="stylesheet" href="userfiles/trybth.php" />
+<LINK rel="stylesheet" href="css/login_bth.css" type="text/css"><LINK rel="stylesheet" href="store/mainstyler.css" type="text/css">
 <STYLE type="text/css">
 <!--
 .Msg {

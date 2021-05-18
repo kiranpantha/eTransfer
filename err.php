@@ -1,11 +1,23 @@
-<?php require('words.php'); ?>
-<?php 
+<?php require('words.php');
 include("userfiles/favicon.php"); 
 if($_GET)
 {
+if(@$_GET['err']!=='')
+{
 if ($_GET['err']=='reqlogin')
 {
-$msg="<center>Forbidden access<br /> You must to log in first&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</center>";
+$msg="ERROR";
+$email_my=@$_COOKIE['email'];
+$pass1=@$_COOKIE['pass1'];
+$pass2=@$_COOKIE['pass2'];
+require("tpl/class/verifylogin.php");
+$gotoo=new verify();
+$mydata=$gotoo->verified($email_my,$pass1,$pass2);
+if ($mydata!=="NULL")
+{
+header('Location: main.php?info=name');
+die();
+}
 }
 if ($_GET['err']=='0X2425')
 {
@@ -15,8 +27,6 @@ if ($_GET['err']=='0X0403')
 {
 $msg="<center>No Access Granted<br />No access at this time</center>";
 }
-
-
 if ($_GET['err']=='mererror')
 {
 $msg="<center>Forbidden access<br />The payment merchant doesnot exist's</center>";
@@ -30,15 +40,12 @@ $msg='<center><h1>You might have been deleted by Website admin for fake informat
 }
 if ($_GET['err']==404)
 {
-$msg="404 Document file || File not found&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;";
-}
-if ($_GET['err']==500)
-{
-$msg="404 Document file || File not found&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;";
+$msg="Oops! Something wrong happened";
 }
 if ($_GET['err']==403)
 {
-$msg="404 Document file || File not found&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;";
+$msg="Oops! Something wrong happened";
+}
 }
 }
 else
@@ -115,17 +122,19 @@ div.warning {
     margin:             0.5em 0 0.5em 0;
     border:             0.1em solid #CC0000;
     width:              90%;
-    background-image:   url(../imp_img/err.png);
+	height:             20px;
+    background-image:   url(imp_img/err.png);
     background-repeat:  no-repeat;
     background-position: 10px 50%;
     padding:            10px 10px 10px 36px;
 	text-align:center;
             }
-			div.att {
+div.att {
     margin:             0.5em 0 0.5em 0;
     border:             0.1em solid #00FF00;
     width:              90%;
-    background-image:   url(../imp_img/ok.png);
+	height:             100%;
+    background-image:   url(imp_img/ok.png);
     background-repeat:  no-repeat;
     background-position: 10px 50%;
     padding:            10px 10px 10px 36px;
@@ -144,6 +153,9 @@ div.atten {
 }
 .lang {	color: #FFFFFF;
 	font-weight: bold;
+}
+body {
+	background-image: url(images/back_img.png);
 }
 -->
 </STYLE>
@@ -168,7 +180,7 @@ div.atten {
                     <?php } ?>
                   </a></td>
                   <td width="21%">&nbsp;</td>
-                  <td width="21%"   style="background-color:#CCCCCC;"><a href="lang.php?set=EN&amp;redir=<?php echo base64_encode($_SERVER['REQUEST_URI']); ?>"><img src="images/uslogo_small.png" alt="Nepali" width="38" height="38" /></a></td>
+                  <td width="21%"   style="background-color:#CCCCCC;"><a href="lang.php?set=EN&amp;redir=<?php echo base64_encode($_SERVER['REQUEST_URI']); ?>"><img src="images/uslogo_small.png" alt="English" width="38" height="38" /></a></td>
                   <td width="48%"   style="background-color:#CCCCCC;"><a href="lang.php?set=NP&amp;redir=<?php echo base64_encode($_SERVER['REQUEST_URI']); ?>">
                     <?php if($lang_check=='en') { ?>
                     </a><a href="lang.php?set=NP&amp;redir=<?php echo base64_encode($_SERVER['REQUEST_URI']); ?>"><img src="imp_img/check.gif" alt="√" width="15" height="15" />
@@ -222,17 +234,13 @@ You can also get a recharge coupon from any Merchants of our Pay site. <BR></TD>
 		</DIV>
 		<!-- end #content -->
 		<DIV id="sidebar">
-			
-        <UL>
-          <H2>
+		<div>
             <!-- end #sidebar -->
-            <IMG src="<?php echo $image1; ?>" alt="Welcome !" width="173" height="195">
-          </H2>
-<BR><BR><BR><BR><BR><BR><BR><BR><BR><BR><BR><BR><BR>
-		  <?php
+            <IMG src="<?php echo $image1; ?>" alt="Welcome !" width="173" height="195"> </div><div>
+<?php
 		require("tpl/login_plug.php");
 ?>
-          </UL>
+          </div>
 	  </DIV>
 		
       <DIV style="clear: both;"><?php echo $social; ?></DIV>

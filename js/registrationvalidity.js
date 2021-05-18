@@ -126,6 +126,21 @@ function emailValidator(elem)
 			return false;
 	}
 }
+function phoneValidator(elem)
+{
+	var phoneExp = /^9+([7-8][0-9][0-9][0-9][0-9][0-9][0-9][0-9][0-9]+)/;
+	if(elem.value.match(phoneExp) && elem.value.length==10)
+	{
+			return true;
+	}
+	else
+	{
+		alert("The phone number that you entered is invalid");
+		elem.value="";
+			elem.focus();
+			return false;
+	}
+}
 function lengthRestriction(elem)
 {
 	var uInput = elem.value;

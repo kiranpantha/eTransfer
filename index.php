@@ -1,16 +1,38 @@
-<?php require('words.php'); ?>
+<?php 
+$lang_set=NULL;
+$lang_set=@$_COOKIE['lang'];
+if($lang_set==NULL)
+{
+ header('Location: lang.php?set=NP&redir='.base64_encode($_SERVER['REQUEST_URI']));
+}
+$email_my=@$_COOKIE['email'];
+$pass1=@$_COOKIE['pass1'];
+$pass2=@$_COOKIE['pass2'];
+require("tpl/class/verifylogin.php");
+$gotoo=new verify();
+$mydata=$gotoo->verified($email_my,$pass1,$pass2);
+if ($mydata!=="NULL")
+{
+header('Location: main.php?info=name');
+die();
+}
+require('words.php');
+
+?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 <LINK rel="stylesheet" href="store/mainstyler.css" type="text/css">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <SCRIPT type="text/javascript" src="store/jquery.js"></SCRIPT>
 <SCRIPT type="text/javascript" src="store/jquery-ui-custom.min.js"></SCRIPT>
 <SCRIPT src="store/jquery.thumbnailScroller.js" /> </SCRIPT>
-<meta http-equiv="content-type" content="text/html; charset=utf-8" />
+<SCRIPT type="text/javascript" src="tpl/ajax_login_refer.php"/></SCRIPT>
 <title><?php echo $sitetitle; ?></title>
 <?php require($url.'userfiles/favicon.php'); ?>
 <link href="style.css" rel="stylesheet" type="text/css" media="screen" />
 <LINK rel="stylesheet" href="userfiles/trybth.php" />
+<LINK rel="stylesheet" href="css/login_bth.css" type="text/css">
 <style type="text/css">
 <!--
 .style2 {font-size: 18px}
@@ -38,10 +60,15 @@ margin-left:1px;
 .lang {	color: #FFFFFF;
 	font-weight: bold;
 }
+body {
+	background-image: url(images/back_img.png);
+}
+.style4 {color: #FF0000; font-size: x-large; }
 -->
 </style>
 </head>
 <body>
+<?php require('tpl/noscript.php'); ?>
 <div id="wrapper">
 	<div id="logo">
 	  <table width="100%" border="0" cellspacing="0" cellpadding="0">
@@ -50,29 +77,11 @@ margin-left:1px;
      <?php echo $sitename;?>
      
     </font></td>
-          <td width="20%"><img src="images/e.gif" alt="A gateway for Nepali transactions" title="A gateway for Nepali transactions"width="184" height="54" /></td>
+          <td width="20%">&nbsp;</td>
         </tr>
         <tr>
           <td><pre class="style2"><?php echo $sitewelcome;?></pre></td>
-          <td><div align="center"><span class="lang">Language:</span>
-            <table width="43%" border="0" cellspacing="0" cellpadding="0">
-              <tr>
-                <td width="21%" height="39"   style="background-color:#CCCCCC;"><a href="lang.php?set=NP&amp;redir=<?php echo base64_encode($_SERVER['REQUEST_URI']); ?>"><img src="images/nplogo_small.png" alt="Nepali" width="37" height="39" /></a></td>
-                <td width="10%"   style="background-color:#CCCCCC;"><a href="lang.php?set=NP&amp;redir=<?php echo base64_encode($_SERVER['REQUEST_URI']); ?>">
-                    <?php if($lang_check=='np') { ?>
-                    <img src="imp_img/check.gif" alt="√" width="15" height="15" />
-                    <?php } ?>
-                  </a></td>
-                <td width="21%">&nbsp;</td>
-                <td width="21%"   style="background-color:#CCCCCC;"><a href="lang.php?set=EN&amp;redir=<?php echo base64_encode($_SERVER['REQUEST_URI']); ?>"><img src="images/uslogo_small.png" alt="Nepali" width="38" height="38" /></a></td>
-                <td width="48%"   style="background-color:#CCCCCC;"><a href="lang.php?set=NP&amp;redir=<?php echo base64_encode($_SERVER['REQUEST_URI']); ?>">
-                    <?php if($lang_check=='en') { ?>
-                    </a><a href="lang.php?set=NP&amp;redir=<?php echo base64_encode($_SERVER['REQUEST_URI']); ?>"><img src="imp_img/check.gif" alt="√" width="15" height="15" />
-                    <?php } ?>
-                  </a></td>
-              </tr>
-                            </table>
-          </div></td>
+          <td><div align="center"><span class="lang">Language:</span><?php require('tpl/lang_frame.tpl'); ?></div></td>
         </tr>
       </table>
    
@@ -93,20 +102,29 @@ margin-left:1px;
 	<div id="page-bgtop">
 		<div id="content">
 		  <div class="post">
-				
 			  <h2 class="title"><?php echo $sitewelcome;?></h2>
-	
 			<div class="entry">
-					
-            <p> <span class="Msg">Each transaction is viewed and order is placed by human so it is 100% secure </span></p><br />
+            <p> <span class="Msg">Each transaction is viewed and order is placed by human so it is 100% secure </span></p>
             <table width="100%" border="0" cellspacing="0" cellpadding="0">
               <tr>
-                <td>	
-				</td>
+                <td>
+			 	 <object classid="clsid:D27CDB6E-AE6D-11cf-96B8-444553540000" codebase="https://download.adobe.com/swf/flashcodes" width="100%" height="82">
+	<param name="movie" value="images/animation/animated_banner.swf">
+	<param name="quality" value="high">
+	<param name="bgcolor" value="#5A5957">
+	<embed src="images/animation/animated_banner.swf" width="100%" height="82" quality="high" bgcolor="#5A5957" type="application/x-shockwave-flash" pluginspage="https://www.adobe.com/go/flash-player-updates">
+</object>				</td>
 			  </tr>
 			</table>
-	  </div>
-				<br />
+	        <div align="center" class="post">
+	          <div>
+	              <div></div>
+                  <div></div>
+              </div>
+	        </div>
+			
+			<h1 align="center"><span class="epayForm style2"><img src="images/special/card_small.png" alt="Visa&trade;" width="46" height="35" />Use your Visa&trade; card to top up Balance </strong></span></h1>
+			</div>
 			<hr /></div>
 		  <div class="post">
 			  <h2 class="title"><a></a>The most secure Gateway that a Nepali can trust </h2>
@@ -123,20 +141,15 @@ margin-left:1px;
 			</div>
 </div>
 		<!-- end #content -->
-		<div id="sidebar">
-			
-        <ul>
-          <h2>
+		<div id="sidebar">         
             <!-- end #sidebar -->
-            <img src="<?php echo $image1; ?>" alt="Welcome !" width="173" height="195" /></h2>
-<br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br />
+            <img src="<?php echo $image1; ?>" alt="Welcome !" width="173" height="195" />
+<div style="width:100%">
 		  <?php
 		require("tpl/login_plug.php");
-?>
-          </ul>
+?></div>
 	  </div>
-		
-    <div style="clear: both;"><?php echo $social; ?>
+	<div style="clear: both;"><?php echo $social; ?>
 </div>
 	</div>
 	</div>

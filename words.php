@@ -10,7 +10,8 @@ mb_http_output("utf-8");
 $url='';
 //image
 $image1="images/e-ani.gif";
-$image2="images/npflagg.gif";
+//$image2="images/npflagg.gif";
+$image2="images/nplogo.png";
 $image3=$urlveri="images/verisign_trans.png";
 //text
 $lang=@$_COOKIE['lang'];

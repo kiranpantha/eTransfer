@@ -1,4 +1,16 @@
 <?php
+/** Compare closest color to real color**/
+//attempt to open image, suppress error messages
+$image = @imagecreatefrompng("png_captcha_background.png");
+//find index of color closest to pure magenta
+//$magentaIndex = imagecolorclosest($image, 255, 0, 255);
+//get RGB values
+//$colorArray = imagecolorsforindex($image, $magentaIndex);
+//allocate closest color
+//$colorMagenta = imagecolorallocate($image,
+//$colorArray["red"],
+//$colorArray["green"],
+//$colorArray["blue"]);
 /*
 ** JPEG button
 ** Creates a graphical button based
@@ -19,20 +31,17 @@ $ButtonLabel = base64_decode(@$_GET['word']);
 }
 if(!isset($ButtonFont))
 {
-$ButtonFont = 5;
+$ButtonFont = 14;
 }
 //create image and colors
-$image = imagecreate($ButtonWidth, $ButtonHeight);
+$image = @imagecreatefrompng("png_captcha_background.png");
+
 $colorBody = imagecolorallocate($image, 0xFF,
 0x00, 0x00);
 $colorShadow = imagecolorallocate($image, 0x00,
 0x00, 0x00);
 $colorHighlight = imagecolorallocate($image, 0xCC,
 0xCC, 0xCC);
-//create body of button
-imagefilledrectangle($image,
-1, 1, $ButtonWidth-2, $ButtonHeight-2,
-$colorBody);
 //draw bottom shadow
 imageline($image,
 0, $ButtonHeight-1,
@@ -55,8 +64,7 @@ imageline($image,
 $colorHighlight);
 //determine label size
 $ButtonLabelHeight = imagefontheight($ButtonFont);
-$ButtonLabelWidth = imagefontwidth($ButtonFont) *
-strlen($ButtonLabel);
+$ButtonLabelWidth = imagefontwidth($ButtonFont) * strlen($ButtonLabel);
 //determine label upper left corner
 $ButtonLabelX = ($ButtonWidth -
 $ButtonLabelWidth)/2;
@@ -76,7 +84,7 @@ $ButtonLabelX,
 $ButtonLabelY,
 $ButtonLabel,
 $colorHighlight);
-//output image
+//send image
 header("Content-type: image/jpeg");
 imagejpeg($image);
 ?>

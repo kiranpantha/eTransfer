@@ -7,10 +7,8 @@ div.warning {
     background-position: 10px 50%;
     padding:            10px 10px 10px 36px;
 	text-align:center;
+	color:#FFFFFF;
             }
-body,td,th {
-	color: #6633CC;
-}
 #Layer1 {	position:absolute;
 	width:29px;
 	height:95px;
@@ -50,6 +48,8 @@ div.att {
     background-position: 10px 50%;
     padding:            10px 10px 10px 36px;
 		text-align:center;
+			color:#00FF00;
+
             }
 div.atten {
     margin:0.5em 0 0.5em 0;
@@ -59,6 +59,7 @@ div.atten {
     background-repeat:no-repeat;
     background-position:10px 50%;
     padding:10px 10px 10px 36px;
-		text-align:center;
+	text-align:center;
+	color:#00FF00;
 
 }

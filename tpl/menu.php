@@ -1,5 +1,6 @@
 <?php 
 $title='';
+require('../words.php');
 $email_my=@$_COOKIE['email'];
 $pass1=@$_COOKIE['pass1'];
 $pass2=@$_COOKIE['pass2'];
@@ -16,6 +17,13 @@ echo "ERROR";
 //header("Location: ../err.php?errid=reqlogin");
 die();
 }
+if($_GET)
+{
+$info_got_data_chcek=$_GET['info'];
+if ($info_got_data_chcek==NULL){ header('Location: err.php'); }
+}
+if(!$_GET) {  header('Location: '.$url.'err.php');  }
+
 //end check
 ?>
 <HTML>
@@ -92,6 +100,7 @@ elseif ($_GET['info']=='statement')
 //if state end
 else
 {
+$count_data=0;
 $tbl_name1="products";
 $sql1="SELECT * FROM $tbl_name1 WHERE type='$task'";
 $result1=mysql_query($sql1);
@@ -99,12 +108,22 @@ if ($result1)
 {
 while($rows=mysql_fetch_array($result1))
 {
+$count_data++;
+if ($count_data%2==0)
+{
+$background="#666666";
+}
+else
+{
+$background="#999999";
+}
 $type=$rows['type'];
 $info=$rows['info'];
 $from=$rows['from'];
 $id=$rows['id'];
 $price=$rows['pricevalue'];
-$title.='<tr><td><img src="store/'.$id.'.png" title="'.$info.'"></td><td><span class="topic">'.$info.'</span><br />
+$imgfile=$rows['imgsrc'];
+$title.='<tr bgcolor="'.$background.'"><td><img src="../images/upload/'.$imgfile.'" title="'.$info.'"></td><td><span class="topic">'.$info.'</span><br />
     <span class="frm">From </span><span class="comp">'.$from.'</span><br />
     <span class="frm">Price</span> <span class="price"> Rs '.$price.'</span> <br /><a class="modal-button" title="Log in" rel="{handler: \'iframe\', size: {x: 375, y: 200}, overlayOpacity: 0.7}" href="buy.php?info='.$id.'&accessid='.md5($id).'"><img src="../imp_img/order.png" alt="Order Now" Title="Order Now"/></a></td></tr>';
 }

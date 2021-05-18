@@ -24,6 +24,7 @@ class viewcode
     <td width="40%"  background="images/noisestrip.png"><span class="title">Information of Product </span></td>
     <td width="25%"  background="images/noisestrip.png"><span class="title">From</span></td>
     <td width="15%"  background="images/noisestrip.png"><span class="title">Price Value</span></td>
+    <td width="15%"  background="images/noisestrip.png"><span class="title">Action</span></td>
   </tr>';
      while($rows=mysql_fetch_array($result))
 	 {
@@ -32,11 +33,12 @@ $middle.='<tr>
     <td background="images/noisestrip_trans.png"><span class="cont">'.$rows['info'].'</span></td>
     <td background="images/noisestrip_trans.png"><span class="cont">'.$rows['from'].'</span></td>
     <td background="images/noisestrip_trans.png"><span class="cont">NRS '.$rows['pricevalue'].'</span></td>
+    <td background="images/noisestrip_trans.png"><span class="cont"><a class="modal-button" href="add_product_code.php?id='.$rows['id'].'" rel="{handler: \'iframe\', size: {x: 720, y: 190}, overlayOpacity: 0.7}"><img src="images/redgnew.png" alt="+" title="Add  code to '.$rows['info'].'"/></a></span></td>
   </tr>';
 	 }
 	$last="</table>";
    }
-return $top.$middle.$last.'<center><div class="nostrip"><a class="modal-button" href="add_product.php" rel="{handler: \'iframe\', size: {x: 750, y: 190}, overlayOpacity: 0.7}"><IMG src="images/notes-add.gif" alt="ADD[+]" width="13" height="13" />Add New Product</a></div></center>';
+return $top.$middle.$last.'<center><div class="nostrip"><a class="modal-button" href="add_product.php" rel="{handler: \'iframe\', size: {x: 750, y: 250}, overlayOpacity: 0.7}"><IMG src="images/notes-add.gif" alt="ADD[+]" width="13" height="13" />Add New Product</a></div></center>';
   }
 }
 ?>

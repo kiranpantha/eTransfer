@@ -102,6 +102,14 @@ border:#FFFFFF;
 	left: 11px;
 	top: 101px;
 }
+#basement {
+	position:absolute;
+	width:98%;
+	height:75px;
+	z-index:3;
+	top: 85%;
+	background-image: url(images/topmenu-middle.png);
+}
 -->
  </style>
 </head>
@@ -110,7 +118,14 @@ border:#FFFFFF;
   <tr>
     <td width="17%" height="89" background="images/topmenu-right.png"  style="background-repeat:no-repeat;"><div align="right"><img src="images/epay.png" alt="e-transfer" width="75%" height="75%" /></div></td>
     <td width="1%" background="images/topmenu-middle.png" style="background-repeat:repeat-x;">&nbsp;</td>
-    <td width="66%" background="images/topmenu-middle.png" style="background-repeat:repeat-x;"><div align="center"><img src="images/admin.png" alt="Super Admin" width="285" height="55" /><span class="style2">
+    <td width="66%" background="images/topmenu-middle.png" style="background-repeat:repeat-x;"><div align="center">
+      <table width="100%" border="0" cellspacing="0" cellpadding="0">
+        <tr>
+          <td>&nbsp;</td>
+          <td><img src="images/admin.png" alt="Super Admin" width="285" height="55" /></td>
+        </tr>
+      </table>
+      <span class="style2">
     <br />
     <?php if($loggedin==0){ } else{ echo '<div style="background:url(images/noisestrip.png); width:90px;"><a href="?admin=logout">Log Out</a></div>';  }?>
     </span></div></td>
@@ -228,7 +243,8 @@ if($loggedin==1)
    require("super_class/merchant_info.php");
    $merlist= new merchant();
    echo $merlist->information();
-   } elseif ($_GET['admin']=='viewproducts')
+   }
+   elseif ($_GET['admin']=='viewproducts')
    {   
    require("super_class/viewcode.php");
    $viewcode= new  viewcode();
@@ -246,12 +262,12 @@ if($loggedin==1)
 }
 ?>
     </div></td>
-  <td><?php  if($loggedin==0){ echo '
+  <td><?php  if($loggedin==0){ ?>
 	 <table width="100%" border="0" cellspacing="0" cellpadding="0"   background="images/noisestrip.png" >
 	 <tr>
 	 <td width="22">&nbsp;</td>
      <td width="225"><div align="center"><STRONG>Login</STRONG></div></td>
-            </tr>
+        </tr>
       <tr>
         <td width="45%"></td>
         <td width="55%"><form id="post" method="post" action="">
@@ -273,7 +289,7 @@ if($loggedin==1)
 
                   </form>          </td>
       </tr>
-    </table>';
+    </table><?php
 	 } ?></td></tr>
       <tr><td height="19"><div id="Layer2">
         <?php
@@ -296,25 +312,57 @@ echo '<img src="images/plz.png.login.png" alt="Plz Log In" width="100%" height="
         <td>&nbsp;</td>
         <td>&nbsp;</td>
       </tr>
+	  <?php 
+	  if($loggedin==0)
+	  {
+	  ?>
       <tr>
+        <td background="images/noisestrip.png"><img src="../images/special/error.png" alt="Attention" width="57%" height="9%" /></td>
         <td background="images/noisestrip.png">&nbsp;</td>
-        <td background="images/noisestrip.png">&nbsp;</td>
-        <td background="images/noisestrip.png"><div align="center" class="style6">Ads</div></td>
+        <td background="images/noisestrip.png"><div align="center" class="style6">
+          <div align="center">
+            <h2>Attention:<br />
+            Only authorised user are allowed to enter in this region </h2>
+          </div>
+        This includes the followning members to get inside the System </div>
+          <ul><li class="green">              System Admin </li>
+            <li class="green">System Controller</li>
+            <li class="green">User Manager</li>
+            <li class="green">and other entities Connected to the e-transfer&trade; team </li>
+          </ul></td>
         <td background="images/noisestrip.png">&nbsp;</td>
       </tr>    
+	  <?php
+	  }
+	  else
+	  {
+	  ?>
+	  <tr>
+        <td background="images/noisestrip.png">&nbsp;</td>
+        <td background="images/noisestrip.png">&nbsp;</td>
+        <td background="images/noisestrip.png"><div align="center" class="red">Ads..</div></td>
+        <td background="images/noisestrip.png">&nbsp;</td>
+      </tr>    
+	  <?php
+	  }
+	  ?>
       <tr>
         <td>&nbsp;</td>
         <td>&nbsp;</td>
         <td>&nbsp;</td>
         <td>&nbsp;</td>
       </tr>
-  <tr>
-    <td height="95" background="images/topmenu-middle.png" style="background-repeat:repeat-x"> <span class="style2">e-transfer Nepal </span><span class="button_id"><br />
-    </span></td>
-    <td background="images/topmenu-middle.png" style="background-repeat:repeat-x">&nbsp;</td>
-    <td background="images/topmenu-middle.png" style="background-repeat:repeat-x">&nbsp;</td>
-    <td background="images/topmenu-middle.png" style="background-repeat:repeat-x"><img src="images/poweredby.png" alt="Powered by e-transfer" width="122" height="42" /></td>
-  </tr>
+ 
 </table>
+
+<div id="basement">
+  <table width="100%" height="100%" border="0" cellpadding="0" cellspacing="0">
+    <tr>
+      <td width="19%"><span style="background-repeat:repeat-x"><span class="style2">e-transfer Nepal </span></span></td>
+      <td width="67%">&nbsp;</td>
+      <td width="14%"><span style="background-repeat:repeat-x"><img src="images/poweredby.png" alt="Powered by e-transfer" width="122" height="42" /></span></td>
+    </tr>
+  </table>
+</div>
 </body>
 </html>

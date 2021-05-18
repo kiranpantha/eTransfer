@@ -13,7 +13,7 @@ class invoice
    if($count==1)
    {
    $rows=mysql_fetch_array($result);
-   $main_data=array($rows['id'],$rows['userid'],$rows['type'],$rows['from'],$rows['pricevalue'],$rows['date'],"NULL");
+   $main_data=array($rows['id'],$rows['from'],$rows['to'],$rows['type'],$rows['p_to'],$rows['pricevalue'],$rows['date'],$rows['code'],"NULL");
    }
   return $main_data;
   }

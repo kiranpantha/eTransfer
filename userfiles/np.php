@@ -1,6 +1,6 @@
 <?php
 $website="www.etransfer.com.np";
-$sitetitle="e-Transfer [पूर्ण रूपमा सुरक्षित Payment माध्यम]";
+$sitetitle="e-Transfer&trade; [पूर्ण रूपमा सुरक्षित भुक्तानी  माध्यम]";
 $sitename='<table width="100%" border="0" cellspacing="0" cellpadding="0">
             <tr>
               <td width="10%"><img src="images/epay_np.png" alt="e-Payments" width="250" height="60"/></td>
@@ -29,9 +29,32 @@ $nrs="रू ";
 $transfer_lang="ट्रन्स्फर";
 $failed_transfer="माफ गर्नुहोला <br />यो $email_lang हामीसँग दर्ता गरिएको छैन<br />$transfer_lang असफल भयो";
 $confirmcode="पुष्ठि कोड";
-$confirmsubmit="$email_lang पुष्ठि गर्वुहोस";
+$confirmsubmit="$email_lang पुष्ठि गर्नुहोस";
 $info_top_confirm='कृपया ईमेल र ईमेलमा रहेको पुष्ठि कोड टाईप गर्नुहोस।';
-
+$gateway_for_nepali='नेपालीहरूको लागि भुक्तानी माध्यम';
+$password_lang='गोप्यशब्द';
+$password1_lang="गोप्यशब्द १";
+$password2_lang="गोप्यशब्द २";
+$login_lang="भित्रिनुहोस";
+$forgot_lang_desc="हामो यस सिस्टममा $password_lang भुल्नु स्वभाविक हो";
+$forgot_lang="$password_lang भुल्नुभयो?";
+$cook= "<font color=\"red\">* Cookies इन्याबल भएको हुनुपर्छ</font>";
+$start_for_pass="भुल्नुभएको ".$email_lang."को $password_lang प्राप्त गर्न $email_lang लेख्नुहोस";
+$procced_lang="$password_lang पुर्न प्राप्त गर्नुहोस";
+$accept_lang='हामो सब  खनद  तथज  व  जज जतजतनभ जतचनजत ';
+$language_lang='भाषा';
+//register.php
+$name_lang="नाम";
+$org_lang="कम्पनी";
+$address_lang="ठेगाना";
+$phone_lang="फोन";
+$birth_lang="जन्मदिन";
+$gender_lang="लिङ्ग";
+$capctha_lang="सुरक्षा जाच";
+$register_bth_lang="नयाँ दर्ता गर्नुहोस्";
+$clear_lang="खाली पार्नुहोस्";
+$loading_lang='कृपया केही क्षण पर्खनुहोस...';
+$statement_long_lang='सम्पुर्ण हिसाब';
 //end words
 $promo="We accept bank transfer and after confirmation of your recharge request we will recharge your Account and we will withdraw within 24 hours to your bank account on the case of withdrawl request .<br> You may also contact any merchants of our payment gateway inorder to get recharge via special pin number which is produced by repeted algorithm by our team";
 $social='<div align="right"><a href="mailto:info@pay.kiranpantha.com.np" title="ईमेल"><img src="imp_img/mail.png" alt="E-Mail" width="47" height="49" id="E-Mail" title="E-Mail" /></a> <a href="http://fb.com/kiranpanth" title="फेसबुक"><img src="imp_img/fb.png" alt="Facebook" width="47" height="49" id="Facebook" title="Facebook" /></a><a href="http://twitter.com/kiranpanth"><img src="imp_img/bird.png" alt="Twitter" width="60" height="49" id="Twitter" title="Twitter" /></a></div>';

@@ -52,9 +52,22 @@ class wemail
     <td>&nbsp;</td>
   </tr>
 </table>';
-$from = "From: noreply@kiranpantha.com.np";
-@mail($email,$subject,$kiran_msg,$from);
-return "yes";
-  }
+require_once('phpmailer.php');
+
+$mail = new PHPMailer(true); //defaults to using php "mail()"; the true param means it will throw exceptions on errors, which we need to catch
+
+try {
+  $mail->AddReplyTo('kiranpanth@gmail.com', 'e-transfer Nepal');
+  $mail->AddAddress($email, 'Dear User');
+  $mail->SetFrom('noreply@kiranpantha.com.np', 'E-transfer Nepal');
+  $mail->Subject = $subject;
+  $mail->AltBody = 'To view the message, please use an HTML compatible email viewer!'; // optional - MsgHTML will create an alternate automatically
+  $mail->MsgHTML($kiran_msg);
+  $mail->Send();
+} 
+catch (Exception $e) {
+  echo $e->getMessage(); //Boring error messages from anything else!
+}
+}
 }
 ?>
