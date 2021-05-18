@@ -1,0 +1,25 @@
+﻿register_e2n.php,Register English 2 Nepali,Register English 2 nepali to get access to all facilities of E2N
+CheckMail.php,Check mail,Use mail facilities provided by kiransoft
+http://gmail.com/?hl=en,Check mail through Gmail,Check your mail through gmail
+http://kiranpantha.com.np,Kiran Pantha,Kiran pantha's Website
+sendmail.php,Get E-mail Notificaion,Get notified about software updates and new topics
+http://ne-np.facebook.com,Facebook नेपाली ,Use facebook in Nepali language
+http://facebook.com,Facebook,facebook is a social networking site where people can post comment and like the status  and do more
+http://facebook.com/kiranpanth,Kiran pantha on Facebook,Visit  facebook to post comment and like the status of kiran pantha and do more
+down.php,Download softwares,Download software  developed By kiran Pantha
+upload.php,Upload photos,Upload photos  to this website
+popup.php,View uploaded photos,View uploaded photos uploaded by many viewers
+guestbook.php,Guestbook,Contact me by posting information on this contact page
+http://mail.google.com/a/kiranpantha.com.np,Get E-mail by kiransoft,Email by kiransoft
+http://maps.google.com,Get Maps by Google.com,Get maps by Google for Navigation Roads Location
+http://slc.ntc.net.np,SLC result,SLC result by NTC & SOCE
+games,Games,Play online games created by me
+http://youtube.com/?refer=kiransoft,Youtube-Broadcast Yourself,Upload  share &  watch videos
+http://facebook.com/English2Nepali,English 2 Nepali - Facebook,Like English 2 Nepali in facebook
+about.php,About me , नाम : किरण पन्थ Name:kiran Pantha जन्म मिति : २०५३ असारको ३ गते Address : Shankarnagar-5 Rupandehi Nepal..................
+forum,Forum page,Post question and reply to posted question
+search.php,Search,Search the images and pages of this website
+/webhosting,Free Web Hosting ,Host websites for free ie for your own registered domain or select a subdomain provided
+secure.php?admin=login&post=search.php,Log In,Log in to kiransoft website to upload photos; Post question ; reply to question's ; etc.. 
+games,Play Games,Play online games like snake ; Dots game ;Rocket blaster;Tic tac toe etc..
+/e2n,English 2 Nepali || Home,English 2 Nepali is a software that translates english word to their corresponding meaning in Nepali

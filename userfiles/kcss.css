@@ -1,0 +1,128 @@
+.blue{
+border-right:2px solid #6600CC;
+border-left:2px solid #6600CC; 
+border-top:2px solid #6600CC; 
+border-bottom:2px solid #6600CC;
+padding:0; font-size:12pt;
+color:#6600CC;
+background:#FFFFFF;
+}
+#wishme {
+	position:absolute;
+	width:638px;
+	height:70px;
+	z-index:1;
+	left: 238px;
+	top: 124px;
+	background-color: #CCCCCC;
+}
+.style1 {
+	font-size: 14px;
+	color: #00FF00;
+}
+.style3 {color: #00CC33}
+.style5 {color: #00FF33}
+#ads{
+	position:absolute;
+	layer-background-color:#CCCCCC;
+	border:1px none #000000;
+	z-index:1;
+	left: 440px;
+	top: 52px;
+	background-color: #00FF33;
+	width: 192px;
+
+}
+#bydesign {
+	position:absolute;
+	width:287px;
+	height:76px;
+	background-color:#CCCCCC;
+	layer-background-color:#CCCCCC;
+	border:1px none #000000;
+	z-index:2;
+	left: 395px;
+	top: 397px;
+	visibility: hidden;
+
+	
+}
+#ffb {
+	position:absolute;
+	width:274px;
+	height:60px;
+	layer-background-color:#CCCCCC;
+	border:1px none #000000;
+	z-index:1;
+	left: 174px;
+	top: 500px;
+	visibility: hidden;
+	}
+#ffsh {
+	position:absolute;
+	width:274px;
+	height:60px;
+	layer-background-color:#CCCCCC;
+	border:1px none #000000;
+	z-index:1;
+	left: 174px;
+	top: 500px;
+	visibility: hidden;
+}
+#fblog {
+	position:absolute;
+	width:41px;
+	height:176px;
+	background-color:#CCCCCC;
+	layer-background-color:#CCCCCC;
+	border:1px none #000000;
+	z-index:3;
+	left: 80.1%;
+	top: 2px;
+	visibility: hidden;
+
+}
+#kiranfb {
+	position:absolute;
+	width:20px;
+	height:115px;
+	background-color:#CCCCCC;
+	layer-background-color:#CCCCCC;
+	border:1px none #000000;
+	z-index:3;
+	left: 97%;
+	top: 2px;
+}
+#Layer2 {
+	position:absolute;
+	width:493px;
+	height:115px;
+	layer-background-color:#CCCCCC;
+	border:1px none #000000;
+	z-index:4;
+	left: 254px;
+	top: 128px;
+}
+#searchsite {
+	position:absolute;
+	width:280px;
+	height:13px;
+	background-color:#CCCCCC;
+	layer-background-color:#CCCCCC;
+	border:1px none #000000;
+	z-index:4;
+	left: 282px;
+	top: 121px;
+	voice-family:inherit
+}
+#downit {
+	position:absolute;
+	width:394px;
+	height:115px;
+	background-color:#CCCCCC;
+	layer-background-color:#CCCCCC;
+	border:1px none #000000;
+	z-index:4;
+	left: 283px;
+	top: 120px;
+}

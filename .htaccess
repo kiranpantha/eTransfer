@@ -1,0 +1,3 @@
+ErrorDocument 404 /err.php?errid=404
+ErrorDocument 500 /err.php?errid=500
+ErrorDocument 403 /err.php?errid=403
